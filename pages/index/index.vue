@@ -2,7 +2,18 @@
 	<view>
 		<!-- banner -->
 		<view class="banner">
-			<image src="../../static/images/home-banner.png" mode=""></image>
+			<swiper class="swiper-box" indicator-dots="indicatorDots" autoplay="autoplay" interval="3000" duration="duration" indicator-active-color="#3395FD">
+				<block>
+					<swiper-item class="swiper-item">
+						<image src="../../static/images/home-banner.png" mode=""></image>
+					</swiper-item>
+				</block>
+				<block>
+					<swiper-item class="swiper-item">
+						<image src="../../static/images/information-img1.png" mode=""></image>
+					</swiper-item>
+				</block>
+			</swiper>
 		</view>
 		
 		<!-- 热门国家 -->
