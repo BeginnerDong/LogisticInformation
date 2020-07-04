@@ -30,6 +30,19 @@
 					<image src="../../static/images/website-img.png" mode=""></image>
 				</view>
 			</view>
+			
+			<!--合作伙伴 -->
+				<view class="tit my-4 color2 font-26 d-flex tit3">
+					<image src="../../static/images/website-icon3.png" mode=""></image>
+					<view class="txt pl-1">合作伙伴</view>
+				</view>
+				<view class="font-30 color2 partner d-flex flex-wrap j-sb">
+					<image src="../../static/images/home-img7.png" mode=""></image>
+					<image src="../../static/images/home-img7.png" mode=""></image>
+					<image src="../../static/images/home-img7.png" mode=""></image>
+					<image src="../../static/images/home-img7.png" mode=""></image>
+				</view>
+				
 		</view>
 		
 		
@@ -79,6 +92,8 @@
 .tit .txt{padding-top:40rpx;}
 .tit:nth-child(1) image{width: 126rpx;}
 .tit2 image{width: 132rpx;height: 60rpx;margin-top: 8rpx;}
+.tit3 image{width: 182rpx;height: 50rpx;margin-top: 18rpx;}
+.partner image{width: 210rpx;height: 140rpx;box-shadow: 0 0 15rpx 0 #d1d1d1;margin-bottom: 30rpx;}
 
 .conImg{position: relative;height: 350rpx;}
 .conImg image{position: absolute;height: 260rpx;width: 410rpx;}
