@@ -4,7 +4,7 @@
 		<view class="font-40 color2 mx-2 pt-4">{{mainData.title}}</view>
 		<view class="d-flex a-end mx-2 pt-3 pb-5">
 			<view class="font-28 colorB pr-2">{{mainData.description}}</view>
-			<view class="font-26 color9">{{mainData.description}}</view>
+			<view class="font-26 color9">{{mainData.create_time}}</view>
 		</view>
 		
 		<view class="mx-2 newsCon pb-5">
