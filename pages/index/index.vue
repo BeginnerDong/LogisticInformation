@@ -83,29 +83,10 @@
 			<swiper class="order-swiper" vertical="true" autoplay="autoplay" interval="3000">
 				<block>
 					<swiper-item class="item colorf font-22">
-						<view class="line-h d-flex s-jb pt-2">
-							<view>深圳市-美国洛杉矶</view>
-							<view class="flex-1 pl-2">CHL快递</view>
-							<view>2020-06-23</view>
-						</view>
-						<view class="line-h d-flex s-jb pt-2">
-							<view>深圳市-加拿大</view>
-							<view class="flex-1 pl-2">UPS双清包税直发</view>
-							<view>2020-06-23</view>
-						</view>
-					</swiper-item>
-				</block>
-				<block>
-					<swiper-item class="item colorf font-22">
-						<view class="line-h d-flex s-jb pt-2">
-							<view>深圳市-美国洛杉矶</view>
-							<view class="flex-1 pl-2">CHL快递</view>
-							<view>2020-06-23</view>
-						</view>
-						<view class="line-h d-flex s-jb pt-2">
-							<view>深圳市-加拿大</view>
-							<view class="flex-1 pl-2">UPS双清包税直发</view>
-							<view>2020-06-23</view>
+						<view class="line-h d-flex s-jb pt-2"  v-for="(item,index) in orderData" :key="item.id">
+							<view>{{item.title}}</view>
+							<view class="flex-1 pl-2">{{item.description}}</view>
+							<view>{{item.create_time}}</view>
 						</view>
 					</swiper-item>
 				</block>
@@ -148,12 +129,13 @@
 				sliderData: {},
 				FbaData: [],
 				newsData: [],
-				partnerData: []
+				partnerData: [],
+				orderData:[]
 			}
 		},
 		onLoad() {
 			const self = this;
-			self.$Utils.loadAll(['getSliderData', 'getFbaData', 'getNewsData', 'getPartnerData'], self);
+			self.$Utils.loadAll(['getSliderData', 'getFbaData', 'getNewsData', 'getPartnerData','getOrderData'], self);
 		},
 		
 		onShareAppMessage(ops) {
@@ -267,6 +249,34 @@
 						self.partnerData = res.info.data
 					};
 					self.$Utils.finishFunc('getPartnerData');
+				};
+				self.$apis.articleGet(postData, callback);
+			},
+			
+			getOrderData() {
+				const self = this;
+				const postData = {};
+				postData.paginate = {
+					count: 0,
+					currentPage: 1,
+					is_page: true,
+					pagesize: 2
+				};
+				postData.searchItem = {
+					thirdapp_id: 2,
+					type: 4
+				};
+				postData.order = {
+					create_time:'desc'
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.orderData = res.info.data;
+						for (var i = 0; i < self.orderData.length; i++) {
+							self.orderData[i].create_time = self.orderData[i].create_time.substr(0,10)
+						}
+					};
+					self.$Utils.finishFunc('getOrderData');
 				};
 				self.$apis.articleGet(postData, callback);
 			},
