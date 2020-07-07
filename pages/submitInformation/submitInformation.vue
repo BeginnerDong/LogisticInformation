@@ -299,12 +299,12 @@ page{background-color: #f5f5f5;}
 .select image{width: 30rpx;height: 30rpx;margin-right: 10rpx;}
 .label{width: 25%;margin-top: 30rpx;}
 
-.kg input{width: 400rpx;height: 70rpx;text-indent: 30rpx;}
+.kg input{width: 400rpx;height: 70rpx;padding-left: 30rpx;box-sizing: border-box;}
 .iconBox{width: 92%;bottom: -30rpx;}
 .iconBox image{width: 8rpx;height: 43rpx;}
 
-.card2 input{font-size: 26rpx;color: #999;padding: 40rpx 0 20rpx;border-bottom: 1px solid #e1e1e1;text-indent: 24rpx;position: relative;}
-.card2 input::before{content: '*';color: #E80F0F;position: absolute;left: -25rpx;}
+.card2 input{font-size: 26rpx;color: #999;padding: 40rpx 24rpx 20rpx;border-bottom: 1px solid #e1e1e1;position: relative;}
+.card2 input::before{content: '*';color: #E80F0F;position: absolute;left: 0;}
 .submit{margin-top: 80rpx;}
 
 .model{width: 400rpx;height: 300rpx;background-color: rgba(0,0,0,0.5);}

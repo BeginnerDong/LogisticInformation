@@ -2,8 +2,7 @@
 	<view>
 		<!-- banner -->
 		<view class="banner">
-			<swiper class="swiper-box" indicator-dots="indicatorDots" autoplay="autoplay" interval="3000" duration="duration"
-			 indicator-active-color="#3395FD">
+			<swiper class="swiper-box" indicator-dots="indicatorDots" autoplay="autoplay" interval="3000" indicator-active-color="#3395FD">
 				<block v-for="(item,index) in sliderData.mainImg" :key="index">
 					<swiper-item class="swiper-item">
 						<image :src="item.url" mode=""></image>
@@ -76,6 +75,41 @@
 		<view class="d-flex flex-wrap j-sb mx-2 partner">
 			<image v-for="(item,index) in partnerData" :key="item.id" :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''"
 			 mode=""></image>
+		</view>
+		
+		<!-- 实时订单 -->
+		<view class="order d-flex a-center j-sb px-2">
+			<image src="../../static/images/home-icon1.png" class="img"></image>
+			<swiper class="order-swiper" vertical="true" autoplay="autoplay" interval="3000">
+				<block>
+					<swiper-item class="item colorf font-22">
+						<view class="line-h d-flex s-jb pt-2">
+							<view>深圳市-美国洛杉矶</view>
+							<view class="flex-1 pl-2">CHL快递</view>
+							<view>2020-06-23</view>
+						</view>
+						<view class="line-h d-flex s-jb pt-2">
+							<view>深圳市-加拿大</view>
+							<view class="flex-1 pl-2">UPS双清包税直发</view>
+							<view>2020-06-23</view>
+						</view>
+					</swiper-item>
+				</block>
+				<block>
+					<swiper-item class="item colorf font-22">
+						<view class="line-h d-flex s-jb pt-2">
+							<view>深圳市-美国洛杉矶</view>
+							<view class="flex-1 pl-2">CHL快递</view>
+							<view>2020-06-23</view>
+						</view>
+						<view class="line-h d-flex s-jb pt-2">
+							<view>深圳市-加拿大</view>
+							<view class="flex-1 pl-2">UPS双清包税直发</view>
+							<view>2020-06-23</view>
+						</view>
+					</swiper-item>
+				</block>
+			</swiper>
 		</view>
 
 
@@ -366,4 +400,8 @@
 		height: 120rpx;
 		margin-bottom: 30rpx;
 	}
+	
+	.order{height: 110rpx;background-color: #182431;}
+	.order .img{width: 118rpx;height: 28rpx;}
+	.order-swiper{width: 565rpx;height: 100%;}
 </style>
