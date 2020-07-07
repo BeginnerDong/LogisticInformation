@@ -1,49 +1,7 @@
 <template>
 	<view>
 		<!-- banner -->
-		<view class="banner mb-2">
-			<image src="../../static/images/website-img.png" mode=""></image>
-		</view>
-		
-		<view class="mx-3">
-			<!-- 企业介绍 -->
-			<view class="tit my-4 color2 font-26 d-flex">
-				<image src="../../static/images/website-icon1.png" mode=""></image>
-				<view class="txt pl-1">企业介绍</view>
-			</view>
-			<view class="font-30 color2">
-				<view class="pb-3">指企业的组织形式。以营利为目的的社团法人。在资本主义社会获得高度发展。</view>
-				<view class="pb-3">国营工、商、建筑、运输等部门中实行独立经济核算的经营管理组织和某些城市中按行业划分的专业管理机构，也通称公司。 </view>
-				<view class="pb-3">指企业的组织形式。以营利为目的的社团法人。在资本主义社会获得高度发展。</view>
-			</view>
-			
-			<!-- 企业文化 -->
-			<view class="tit my-4 color2 font-26 d-flex tit2">
-				<image src="../../static/images/website-icon2.png" mode=""></image>
-				<view class="txt pl-1">企业文化</view>
-			</view>
-			<view class="font-30 color2">
-				<view class="pb-3">指企业的组织形式。以营利为目的的社团法人。在资本主义社会获得高度发展。</view>
-				<view class="pb-3">国营工、商、建筑、运输等部门中实行独立经济核算的经营管理组织和某些城市中按行业划分的专业管理机构，也通称公司。 </view>
-				<view class="conImg">
-					<image src="../../static/images/about-img.png" mode=""></image>
-					<image src="../../static/images/website-img.png" mode=""></image>
-				</view>
-			</view>
-			
-			<!--合作伙伴 -->
-				<view class="tit my-4 color2 font-26 d-flex tit3">
-					<image src="../../static/images/website-icon3.png" mode=""></image>
-					<view class="txt pl-1">合作伙伴</view>
-				</view>
-				<view class="font-30 color2 partner d-flex flex-wrap j-sb">
-					<image src="../../static/images/home-img7.png" mode=""></image>
-					<image src="../../static/images/home-img7.png" mode=""></image>
-					<image src="../../static/images/home-img7.png" mode=""></image>
-					<image src="../../static/images/home-img7.png" mode=""></image>
-				</view>
-				
-		</view>
+		<web-view :webview-styles="webviewStyles" src="https://www.baidu.com"></web-view>
 		
 		
 		

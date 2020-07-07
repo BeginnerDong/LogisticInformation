@@ -11,8 +11,13 @@
 				<image src="../../static/images/information-icon.png" class="icon3"></image>
 				<view class="colorf">
 					<view class="font-24 d-flex a-center"><image src="../../static/images/information-icon2.png" class="icon2"></image>目的地</view>
-					<view class="font-30 pl-1 pt-5 d-flex a-center" @click="Router.redirectTo({route:{path:'/pages/selectAddress/selectAddress'}})">请选择<image src="../../static/images/information-icon7.png" class="sj"></image></view>
-					<!-- <view class="font-30 pl-1 pt-5 text-center">美国</view> -->
+					<view v-if="name==''">
+						<view class="font-30 pl-1 pt-5 d-flex a-center"
+						@click="Router.navigateTo({route:{path:'/pages/selectAddress/selectAddress?type='+type}})">请选择
+						<image src="../../static/images/information-icon7.png" class="sj"></image></view>
+					</view>
+					
+					<view class="font-30 pl-1 pt-5 text-center" v-else>{{name}}</view>
 				</view>
 			</view>
 		</view>
@@ -21,51 +26,33 @@
 			<!-- 运输方式 -->
 			<view class="font-30 color2 pt-4">运输方式</view>
 			<view class="select d-flex flex-wrap">
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon3.png" mode=""></image><text>快递</text>
+				<view class="font-28 color9 d-flex a-center label" 
+					v-for="(item,index) in transportType" :key="item.id"
+					v-if = "transportType.length>0"
+					@click="choose(1,index)"
+				>
+					<image :src="submitData.gender==item.id?'../../static/images/information-icon3.png':'../../static/images/information-icon4.png'"
+					 mode=""></image><text>{{item.title}}</text>
 				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>空运</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>海运</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>铁路</text>
-				</view>
+				<view v-if="transportType.length==0&&name!=''" class="color9 mt-2">暂无可选运输方式</view>
+				<view v-if="transportType.length==0&&name==''" class="color9 mt-2">请先选择国家</view>
 			</view>
 			<!-- 货物类型 -->
 			<view class="font-30 color2 pt-4">货物类型</view>
 			<view class="select d-flex flex-wrap">
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>普货</text>
+				<view class="font-28 color9 d-flex a-center label"
+					v-for="(item,index) in goodsTypeData" :key="item.id"
+					@click="choose(2,index)"
+				>
+					<image :src="submitData.class==item.id?'../../static/images/information-icon3.png':'../../static/images/information-icon4.png'"
+					 mode=""></image><text>{{item.title}}</text>
 				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>带电</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>带磁</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>带磁带电</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>鞋子</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>包包</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>纺织品</text>
-				</view>
-				<view class="font-28 color9 d-flex a-center label">
-					<image src="../../static/images/information-icon4.png" mode=""></image><text>其他</text>
-				</view>
+				
 			</view>
 			<!-- 预计重量 -->
 			<view class="font-30 color3 d-flex a-center j-sb pt-5 pb-3 kg">
 				<view>预计重量</view>
-				<input type="text" placeholder="请输入" class="font-26 color6 border-e1 rounded"/>
+				<input type="digit" placeholder="请输入" v-model="submitData.keywords" class="font-26 color6 border-e1 rounded"/>
 				<view class="font-28">(KG)</view>
 			</view>
 			
@@ -77,17 +64,19 @@
 		
 		<!-- 联系方式 -->
 		<view class="mx-2 mt-2 px-3 rounded10 bg-white card2">
-			<input type="text" placeholder="姓名" />
-			<input type="text" placeholder="联系方式" />
-			<view class="submit" @click="submit()">提交</view>
-			<view class="font-22 text-center colorM pt-3 pb-4">提交后我们会有专业的客服人员回复</view>
+			<input type="text" placeholder="姓名"  v-model="submitData.description"/>
+			<input type="text" placeholder="联系方式" v-model="submitData.phone"/>
+			<button style="font-size: 15px;" class="submit" open-type="getUserInfo" @getuserinfo="Utils.stopMultiClick(submit)">提交</button>
+			<view class="font-22 text-center colorM pt-3 pb-4">{{artData.description}}</view>
 		</view>
 		
 		<!-- 下单须知 -->
 		<view class="color9 font-24 pb-4 mx-3">
-			<view class="pt-4 pb-3 font-28 color2">下单须知</view>
-			<view class="pb-3">1.如货物出货后无提取信息的，无论任何原因造成，例如：海关查验扣件、丢件、等各种原因造成无提取物的，推未提取部分的运费，且按实际采购货值进行赔偿，赔偿最高不超过30RMB/KG</view>
-			<view>2.不承担的物品包括：纯电池、仿牌、液体、粉末、食品、鲜货、药品、腐蚀性物品、易燃易爆军火武器等违禁品 </view>
+			<view class="pt-4 pb-3 font-28 color2">{{artData.title}}</view>
+			<view class="pb-3">
+				<view class="content ql-editor" style="padding:0;" v-html="artData.content">
+				</view>
+			</view>
 		</view>
 		
 		
@@ -106,26 +95,200 @@
 		data() {
 			return {
 				Router:this.$Router,
-				is_show:false
+				is_show:false,
+				name:'',
+				transportType:[],
+				goodsTypeData:[],
+				submitData:{
+					title:'深圳市',
+					behavior:'',
+					gender:'',
+					class:'',
+					description:'',
+					phone:'',
+					keywords:''
+				},
+				Utils:this.$Utils,
+				type:'',
+				//noCountry:false
+				artData:{}
 			}
 		},
-		methods: {
-			submit(){
-				const self = this;
-				self.is_show = true;
-				setTimeout(function(){
-					self.is_show = false;
-				},3000)
-				clearTimeout();
+		
+		onLoad(options) {
+			const self = this;
+			if (options.name) {
+				self.name = options.name?options.name:uni.getStorageSync('name');
+				self.getTransType()
+			}else if(options.type){
+				self.type = options.type
+			};
+			self.$Utils.loadAll(['getGoodsType','getArtData'], self);
+		},
+		
+		onShow() {
+			const self = this;
+			if (uni.getStorageSync('name')) {
+				self.name = uni.getStorageSync('name');
+				self.getTransType()
 			}
-		}
+		},
+		
+		methods: {
+			
+			getArtData() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					thirdapp_id: 2,
+					type: 6
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.artData = res.info.data[0];
+						const regex = new RegExp('<img', 'gi');
+						self.artData.content = self.artData.content.replace(regex, `<img style="max-width: 100%;"`);
+					};
+					console.log(self.artData)
+					self.$Utils.finishFunc('getArtData');
+				};
+				self.$apis.articleGet(postData, callback);
+			},
+			
+			messageAdd() {
+				const self = this;
+				const postData = {};
+				postData.tokenFuncName = 'getProjectToken';
+				if(!wx.getStorageSync('user_info')||wx.getStorageSync('user_info').headImgUrl==''||!wx.getStorageSync('user_info').headImgUrl){
+				  postData.refreshToken = true;
+				};
+				postData.data = {};
+				postData.data = self.$Utils.cloneForm(self.submitData);
+				const callback = (data) => {				
+					if (data.solely_code == 100000) {					
+						self.is_show = true;
+						setTimeout(function(){
+							self.is_show = false;
+						},2000)
+						clearTimeout();
+						setTimeout(function() {
+							uni.navigateBack({
+								delta:1
+							})
+						}, 2000);
+						
+					} else {
+						uni.setStorageSync('canClick', true);
+						self.$Utils.showToast(data.msg, 'none', 1000)
+					}	
+				};
+				self.$apis.messageAdd(postData, callback);
+			},
+			
+			
+			
+			
+			submit() {
+				const self = this;
+				
+				uni.setStorageSync('canClick', false);
+				const pass = self.$Utils.checkComplete(self.submitData);
+				console.log('pass', pass);
+				console.log('self.submitData',self.submitData)
+				
+				if (pass) {	
+					if (self.submitData.phone.trim().length != 11 || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(self.submitData.phone)) {
+						uni.setStorageSync('canClick', true);
+						self.$Utils.showToast('请输入真实有效的手机号', 'none', 1000)
+						return;
+					}
+					const callback = (user, res) => {
+						console.log(res)
+						self.messageAdd();
+					};
+					self.$Utils.getAuthSetting(callback);
+				
+				} else {
+					uni.setStorageSync('canClick', true);
+					self.$Utils.showToast('请补全信息', 'none')
+				};
+			},
+			
+			choose(type,index){
+				const self = this;
+				if(type == 1){
+					self.submitData.gender = self.transportType[index].id
+				}else if(type == 2){
+					self.submitData.class = self.goodsTypeData[index].id
+				}
+			},
+			
+		
+			
+			getTransType() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					thirdapp_id: 2,
+					title:self.name
+				};
+				postData.getAfter = {
+					child: {
+						tableName: 'Label',
+						middleKey: 'id',
+						key: 'parentid',
+						searchItem: {
+							status:1
+						},
+						condition: 'in'
+					}
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.aitData = res.info.data[0];
+						self.submitData.behavior = self.aitData.id;
+						self.transportType = self.aitData.child;
+						uni.removeStorageSync('name')
+					}
+				};
+				self.$apis.labelGet(postData, callback);
+			},
+			
+			getGoodsType() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					thirdapp_id: 2,
+				};
+				postData.getBefore = {
+					article: {
+						tableName: 'Label',
+						middleKey: 'parentid',
+						key: 'id',
+						searchItem: {
+							title: ['in', ['货物类型']],
+						},
+						condition: 'in'
+					}
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.goodsTypeData = res.info.data
+					}
+					self.$Utils.finishFunc('getGoodsType');
+				};
+				self.$apis.labelGet(postData, callback);
+			},
+				
+		},
+		
 	}
 </script>
 
 <style>
 page{background-color: #f5f5f5;}
 .bjImg{width: 100%;height: 320rpx;}
-.mask{width: 100%;height: 100%;background-color: rgba(0,0,0,0.3);position: absolute;top: 0;left: 0;}
+.mask{width: 100%;height: 100%;background-color: rgba(0,0,0,0.6);position: absolute;top: 0;left: 0;}
 .icon1{width: 22rpx;height: 30rpx;margin-right: 10rpx;}
 .icon2{width: 28rpx;height: 28rpx;margin-right: 10rpx;}
 .icon3{width: 127rpx;height: 46rpx;}

@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "物流小程序",//设置页面标题文字
+				"navigationBarTitleText": "宇骐国际物流",//设置页面标题文字
 				"onReachBottomDistance":100
 			}
 		}
