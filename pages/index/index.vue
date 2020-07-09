@@ -10,7 +10,7 @@
 				</block>
 			</swiper>
 		</view>
-
+		
 		<!-- 热门国家 -->
 		<view class="line-h font-30 color2 mt-5 mb-3 mx-2 tit">热门国家</view>
 		<view class="hotCountry mx-2 d-flex flex-wrap">
@@ -38,7 +38,7 @@
 				<image src="../../static/images/home-img5.png" mode=""></image><text>更多</text>
 			</view>
 		</view>
-
+	
 		<!-- FBA -->
 		<view class="line-h font-30 color2 mt-5 mx-2 tit">FBA双清包税</view>
 		<view class="fba pl-2 d-flex flex-nowrap pt-3 pb-3">
@@ -72,9 +72,11 @@
 
 		<!-- 合作伙伴 -->
 		<view class="line- h font-30 color2 mt-2 mb-3 mx-2 tit">合作伙伴</view>
-		<view class="d-flex flex-wrap j-sb mx-2 partner">
-			<image v-for="(item,index) in partnerData" :key="item.id" :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''"
-			 mode=""></image>
+		<view class="d-flex flex-wrap  mx-2 partner">
+			<view v-for="(item,index) in partnerData" :key="item.id" style="width: 33%;display: flex;justify-content: center;align-items: center;">
+				<image  :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''"
+				 mode=""></image>
+			</view>
 		</view>
 		
 		<!-- 实时订单 -->
@@ -406,7 +408,7 @@
 	}
 
 	.partner image {
-		width: 25%;
+		width: 80%;
 		height: 120rpx;
 		margin-bottom: 30rpx;
 	}
