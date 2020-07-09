@@ -76,6 +76,6 @@
 <style>
 .news .item{height: 140rpx;box-sizing: content-box;}
 .news .item:nth-child(1){border: none;}
-.news image{width: 200rpx;height: 140rpx;}
+.news image{width: 200rpx;height: 140rpx;border-radius: 8rpx;}
 .news .item .txt{width: 450rpx;}
 </style>

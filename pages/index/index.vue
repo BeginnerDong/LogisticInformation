@@ -71,7 +71,7 @@
 		</view>
 
 		<!-- 合作伙伴 -->
-		<view class="line- h font-30 color2 mt-2 mb-3 mx-2 tit">合作伙伴</view>
+		<view class="line-h font-30 color2 mt-2 mb-3 mx-2 tit">合作伙伴</view>
 		<view class="d-flex flex-wrap  mx-2 partner">
 			<view v-for="(item,index) in partnerData" :key="item.id" style="width: 33%;display: flex;justify-content: center;align-items: center;">
 				<image  :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''"
@@ -401,6 +401,7 @@
 	.news image {
 		width: 200rpx;
 		height: 140rpx;
+		border-radius: 8rpx;
 	}
 
 	.news .item .txt {
