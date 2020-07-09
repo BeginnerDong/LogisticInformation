@@ -236,12 +236,6 @@
 			getPartnerData() {
 				const self = this;
 				const postData = {};
-				postData.paginate = {
-					count: 0,
-					currentPage: 1,
-					is_page: true,
-					pagesize: 3
-				};
 				postData.searchItem = {
 					thirdapp_id: 2,
 					type: 3
