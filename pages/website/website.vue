@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- banner -->
-		<web-view :webview-styles="webviewStyles" src="http://szyuqi.com"></web-view>
+		<web-view :webview-styles="webviewStyles" src="https://www.szyuqi.com"></web-view>
 		
 		
 		

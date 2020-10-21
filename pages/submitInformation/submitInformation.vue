@@ -164,13 +164,15 @@
 				};
 				postData.data = {};
 				postData.data = self.$Utils.cloneForm(self.submitData);
-				const callback = (data) => {				
+				const callback = (data) => {	
+					uni.hideLoading();
 					if (data.solely_code == 100000) {					
-						self.is_show = true;
+						/* self.is_show = true;
 						setTimeout(function(){
 							self.is_show = false;
 						},2000)
-						clearTimeout();
+						clearTimeout(); */
+						self.$Utils.showToast('您的信息已提交,稍后有工作人员联系您', 'none', 2000)
 						setTimeout(function() {
 							uni.navigateBack({
 								delta:1
@@ -190,9 +192,13 @@
 			
 			submit() {
 				const self = this;
-				
+				uni.showLoading();
 				uni.setStorageSync('canClick', false);
-				const pass = self.$Utils.checkComplete(self.submitData);
+				var newObject = self.$Utils.cloneForm(self.submitData);
+				delete newObject.gender;
+				delete newObject.class;
+				delete newObject.keywords;
+				const pass = self.$Utils.checkComplete(newObject);
 				console.log('pass', pass);
 				console.log('self.submitData',self.submitData)
 				
@@ -210,7 +216,7 @@
 				
 				} else {
 					uni.setStorageSync('canClick', true);
-					self.$Utils.showToast('请补全信息', 'none')
+					self.$Utils.showToast('请补全必要信息', 'none')
 				};
 			},
 			

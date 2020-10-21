@@ -15,27 +15,27 @@
 		<view class="line-h font-30 color2 mt-5 mb-3 mx-2 tit">热门国家</view>
 		<view class="hotCountry mx-2 d-flex flex-wrap">
 			<view class="country font-34 font-w colorf" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?name=美国'}})">
-				<image src="../../static/images/home-img0.png" mode=""></image><text>美国</text>
+				<image :src="image['美国']&&image['美国'][0]?image['美国'][0].url:''" mode=""></image><text>美国</text>
 			</view>
 			<view class="country font-34 font-w colorf" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?name=日本'}})">
-				<image src="../../static/images/home-img.png" mode=""></image><text>日本</text>
+				<image :src="image['日本']&&image['日本'][0]?image['日本'][0].url:''" mode=""></image><text>日本</text>
 			</view>
 			<view class="country font-34 font-w colorf" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?type=欧洲'}})">
-				<image src="../../static/images/home-img1.png" mode=""></image><text>欧洲</text>
+				<image :src="image['欧洲']&&image['欧洲'][0]?image['欧洲'][0].url:''" mode=""></image><text>欧洲</text>
 			</view>
 			<view class="country">
 				<view class="font-34 font-w colorf four" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?name=加拿大'}})">
-					<image src="../../static/images/home-img2.png"></image><text>加拿大</text>
+					<image :src="image['加拿大']&&image['加拿大'][0]?image['加拿大'][0].url:''"></image><text>加拿大</text>
 				</view>
 				<view class="font-34 font-w colorf four" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?name=墨西哥'}})">
-					<image src="../../static/images/home-img3.png"></image><text>墨西哥</text>
+					<image :src="image['墨西哥']&&image['墨西哥'][0]?image['墨西哥'][0].url:''"></image><text>墨西哥</text>
 				</view>
 			</view>
-			<view class="country font-34 font-w colorf" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?name=澳门'}})">
-				<image src="../../static/images/home-img4.png" mode=""></image><text>澳门</text>
+			<view class="country font-34 font-w colorf" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?name=澳大利亚'}})">
+				<image :src="image['澳大利亚']&&image['澳大利亚'][0]?image['澳大利亚'][0].url:''" mode=""></image><text>澳大利亚</text>
 			</view>
 			<view class="country font-34 font-w colorf" @click="Router.navigateTo({route:{path:'/pages/submitInformation/submitInformation?type=其他'}})">
-				<image src="../../static/images/home-img5.png" mode=""></image><text>更多</text>
+				<image :src="image['更多']&&image['更多'][0]?image['更多'][0].url:''" mode=""></image><text>更多</text>
 			</view>
 		</view>
 	
@@ -43,9 +43,9 @@
 		<view class="line-h font-30 color2 mt-5 mx-2 tit">FBA双清包税</view>
 		<view class="fba pl-2 d-flex flex-nowrap pt-3 pb-3">
 			<view class="item font-24 color2 p-3 rounded10 shadow flex-shrink mr-3" v-for="(item,index) in FbaData" :key="item.id">
-				<view class="font-30 font-w">{{item.title}}</view>
+				<view class="font-30 font-w" style="color: #3395FD;">{{item.title}}</view>
 				<view>单价：{{item.small_title}}</view>
-				<view>参考时间：{{item.keywords}}</view>
+				<view>参考时效：{{item.keywords}}</view>
 				<view>可接货物：{{item.description}}</view>
 			</view>
 
@@ -72,8 +72,8 @@
 
 		<!-- 合作伙伴 -->
 		<view class="line-h font-30 color2 mt-2 mb-3 mx-2 tit">合作伙伴</view>
-		<view class="d-flex flex-wrap  mx-2 partner">
-			<view v-for="(item,index) in partnerData" :key="item.id" style="width: 33%;display: flex;justify-content: center;align-items: center;">
+		<view class="d-flex j-sb flex-nowrap  mx-2 partner" style="overflow-x: auto;">
+			<view v-for="(item,index) in partnerData" :key="item.id" style="margin-right: 30rpx;width: 180rpx;display: flex;justify-content: center;align-items: center;">
 				<image  :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''"
 				 mode=""></image>
 			</view>
@@ -82,10 +82,10 @@
 		<!-- 实时订单 -->
 		<view class="order d-flex a-center j-sb px-2">
 			<image src="../../static/images/home-icon1.png" class="img"></image>
-			<swiper class="order-swiper" vertical="true" autoplay="autoplay" interval="3000">
-				<block>
-					<swiper-item class="item colorf font-22">
-						<view class="line-h d-flex s-jb pt-2"  v-for="(item,index) in orderData" :key="item.id">
+			<swiper class="order-swiper" circular="true" vertical="true" interval="3000" autoplay="autoplay" display-multiple-items="2">
+				<block> 
+					<swiper-item class="item colorf font-22"  v-for="(item,index) in orderData" :key="item.id">
+						<view class="line-h d-flex s-jb pt-2">
 							<view>{{item.title}}</view>
 							<view class="flex-1 pl-2">{{item.description}}</view>
 							<view>{{item.create_time}}</view>
@@ -99,7 +99,7 @@
 
 
 
-		<view style="height: 120rpx;width: 100%;"></view>
+		<view style="height: 100rpx;width: 100%;"></view>
 		<!-- 底部 -->
 		<view class="footer">
 			<view class="item on">
@@ -132,12 +132,21 @@
 				FbaData: [],
 				newsData: [],
 				partnerData: [],
-				orderData:[]
+				orderData:[],
+				image:{
+					'美国':'',
+					'日本':'',
+					'欧洲':'',
+					'加拿大':'',
+					'墨西哥':'',
+					'澳大利亚':'',
+					'更多':''
+				}
 			}
 		},
 		onLoad() {
 			const self = this;
-			self.$Utils.loadAll(['getSliderData', 'getFbaData', 'getNewsData', 'getPartnerData','getOrderData'], self);
+			self.$Utils.loadAll(['getSliderData','getImageData','getFbaData', 'getNewsData', 'getPartnerData','getOrderData'], self);
 		},
 		
 		onShareAppMessage(ops) {
@@ -178,6 +187,35 @@
 		},
 
 		methods: {
+			
+			getImageData() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					thirdapp_id: 2,
+				};
+				postData.getBefore = {
+					article: {
+						tableName: 'Label',
+						middleKey: 'parentid',
+						key: 'id',
+						searchItem: {
+							title: ['in', ['首页背景图']],
+						},
+						condition: 'in'
+					}
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.imageData = res.info.data;
+						for (var i = 0; i < self.imageData.length; i++) {
+							self.image[self.imageData[i].title] = self.imageData[i].mainImg
+						}
+					}
+					self.$Utils.finishFunc('getImageData');
+				};
+				self.$apis.labelGet(postData, callback);
+			},
 
 			getSliderData() {
 				const self = this;
@@ -252,12 +290,12 @@
 			getOrderData() {
 				const self = this;
 				const postData = {};
-				postData.paginate = {
+	/* 			postData.paginate = {
 					count: 0,
 					currentPage: 1,
 					is_page: true,
 					pagesize: 2
-				};
+				}; */
 				postData.searchItem = {
 					thirdapp_id: 2,
 					type: 4
@@ -403,7 +441,7 @@
 	}
 
 	.partner image {
-		width: 80%;
+		width: 180rpx;
 		height: 120rpx;
 		margin-bottom: 30rpx;
 	}
